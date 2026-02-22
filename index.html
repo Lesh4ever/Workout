@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="title">Workout Diary</h1>
+      <p class="subtitle">Мій щоденник тренувань</p>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2 class="card__title">Додати сет</h2>
+
+        <form class="form" id="workout-form" autocomplete="off">
+          <label class="field">
+            <span class="field__label">Дата</span>
+            <input class="field__input" type="date" name="date" required />
+          </label>
+
+          <label class="field">
+            <span class="field__label">Вправа</span>
+            <input
+              class="field__input"
+              type="text"
+              name="exercise"
+              placeholder="Squat"
+              required
+            />
+          </label>
+
+          <div class="row">
+            <label class="field">
+              <span class="field__label">Вага (кг)</span>
+              <input
+                class="field__input"
+                type="number"
+                name="weight"
+                min="0"
+                step="0.5"
+                placeholder="60"
+                required
+              />
+            </label>
+
+            <label class="field">
+              <span class="field__label">Повтори</span>
+              <input
+                class="field__input"
+                type="number"
+                name="reps"
+                min="1"
+                step="1"
+                placeholder="10"
+                required
+              />
+            </label>
+          </div>
+
+          <button class="btn" type="submit">Додати</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2 class="card__title">Тренування</h2>
+
+        <div id="workouts">
+          <p class="empty">Поки що немає записів. Додай перший сет 👆</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="./js/app.js" defer></script>
+  </body>
+</html>
