@@ -14,13 +14,34 @@
 
     <main class="container">
       <section class="card">
-        <h2 class="card__title">Додати сет</h2>
+        <h2 class="card__title">Нове тренування</h2>
 
-        <form class="form" id="workout-form" autocomplete="off">
+        <form class="form" id="workout-create-form" autocomplete="off">
           <label class="field">
             <span class="field__label">Дата</span>
             <input class="field__input" type="date" name="date" required />
           </label>
+
+          <label class="field">
+            <span class="field__label">Що качаємо, машина?</span>
+            <input
+              class="field__input"
+              type="text"
+              name="title"
+              placeholder="Напр. Ноги"
+              required
+            />
+          </label>
+
+          <button class="btn" type="submit">Створити тренування</button>
+        </form>
+
+        <hr class="divider" />
+
+        <h2 class="card__title">Додати вправу</h2>
+
+        <form class="form" id="exercise-form" autocomplete="off">
+          <p class="hint" id="active-workout-hint">Активне тренування: немає</p>
 
           <label class="field">
             <span class="field__label">Вправа</span>
@@ -32,38 +53,39 @@
               required
             />
           </label>
+        
 
-          <div class="row">
-            <label class="field">
-              <span class="field__label">Вага (кг)</span>
-              <input
-                class="field__input"
-                type="number"
-                name="weight"
-                min="0"
-                step="0.5"
-                placeholder="Напр. 60"
-                required
-              />
-            </label>
+        <div class="row">
+          <label class="field">
+            <span class="field__label">Вага (кг)</span>
+            <input
+              class="field__input"
+              type="number"
+              name="weight"
+              min="0"
+              step="0.5"
+              placeholder="Напр. 60"
+              required
+            />
+          </label>
 
-            <label class="field">
-              <span class="field__label">Повтори</span>
-              <input
-                class="field__input"
-                type="number"
-                name="reps"
-                min="1"
-                step="1"
-                placeholder="Напр. 10"
-                required
-              />
-            </label>
-          </div>
+          <label class="field">
+            <span class="field__label">Повтори</span>
+            <input
+              class="field__input"
+              type="number"
+              name="reps"
+              min="1"
+              step="1"
+              placeholder="Напр. 10"
+              required
+            />
+          </label>
+        </div>
 
-          <button class="btn" type="submit">Додати</button>
-        </form>
+        <button class="btn" type="submit">Додати вправу</button>
       </section>
+      </form>
 
       <section class="card">
         <h2 class="card__title">Тренування</h2>

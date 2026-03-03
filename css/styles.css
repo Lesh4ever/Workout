@@ -34,7 +34,9 @@ body {
   max-width: 720px;
   margin: 0 auto;
   padding: 0 16px 32px;
-  display: grid;
+
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 }
 
@@ -46,23 +48,19 @@ body {
 }
 
 .card__title {
-  margin: 0 0 12px;
+  margin: 0 0 16px;
   font-size: 18px;
 }
 
 .form {
-  display: grid;
-  gap: 12px;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .field {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 6px;
 }
 
@@ -82,7 +80,17 @@ body {
   border-color: #7aa7ff;
 }
 
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.row .field {
+  flex: 1;
+}
+
 .btn {
+  margin-top: 10px;
   padding: 10px 12px;
   border: none;
   border-radius: 10px;
@@ -90,6 +98,8 @@ body {
   color: #fff;
   font-weight: 600;
   cursor: pointer;
+
+  width: 100%;
 }
 
 .btn:hover {
@@ -99,4 +109,59 @@ body {
 .empty {
   margin: 0;
   color: #666;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 16px 0;
+}
+
+.hint {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+  background: #f3f5fb;
+  padding: 8px 10px;
+  border-radius: 8px;
+}
+
+.workout-block {
+  border: 1px solid #e7e9f1;
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.workout-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.workout-title {
+  color: #2f6bff;
+}
+
+.exercise-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exercise-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.exercise-name {
+  font-weight: 600;
+}
+
+.exercise-meta {
+  color: #444;
 }
