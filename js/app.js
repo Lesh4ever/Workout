@@ -107,30 +107,73 @@ function renderWorkouts() {
       `;
     })
     .join("");
-
   workoutsContainer.innerHTML = html;
 }
 
-workoutsContainer.innerHTML = html;
-
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const formData = new FormData(form);
-
-  const date = formData.get("date");
-  const exercise = formData.get("exercise");
-  const weight = Number(formData.get("weight"));
-  const reps = Number(formData.get("reps"));
-
-  const newSet = { id: Date.now(), date, exercise, weight, reps };
-
-  workouts.push(newSet);
-
-  renderWorkouts(); // ← ОЦЕ ГОЛОВНЕ
-
-  form.reset();
-});
-
 updateActiveHint();
-renderWorkouts(); // ← показати початковий стан
+renderWorkouts();
+
+const openTimerBtn = document.querySelector("#open-timer-btn");
+
+openTimerBtn.addEventListener("click", handleClick);
+
+function handleClick() {
+  let timeLeft = 60;
+  let timerId = null;
+
+  const formatTime = (seconds) => {
+    const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
+    const secs = String(seconds % 60).padStart(2, "0");
+    return `${mins}:${secs}`;
+  };
+
+  const instance = basicLightbox.create(`
+    <div class="timer-modal">
+      <h2 class="timer-modal__title">Таймер відпочинку</h2>
+      <p class="timer-modal__time" id="timer-display">${formatTime(timeLeft)}</p>
+
+      <div class="timer-modal__buttons">
+        <button type="button" class="timer-control-btn" id="start-timer-btn">Старт</button>
+        <button type="button" class="timer-control-btn" id="pause-timer-btn">Пауза</button>
+        <button type="button" class="timer-control-btn" id="reset-timer-btn">Скинути</button>
+      </div>
+    </div>
+    `);
+  instance.show();
+
+  const timerDisplay = document.querySelector("#timer-display");
+  const startTimerBtn = document.querySelector("#start-timer-btn");
+  const pauseTimerBtn = document.querySelector("#pause-timer-btn");
+  const resetTimerBtn = document.querySelector("#reset-timer-btn");
+
+  const updateDisplay = () => {
+    timerDisplay.textContent = formatTime(timeLeft);
+  };
+
+  startTimerBtn.addEventListener("click", () => {
+    if (timerId) return;
+
+    timerId = setInterval(() => {
+      if (timeLeft <= 0) {
+        clearInterval(timerId);
+        timerId = null;
+        return;
+      }
+
+      timeLeft -= 1;
+      updateDisplay();
+    }, 1000);
+  });
+
+  pauseTimerBtn.addEventListener("click", () => {
+    clearInterval(timerId);
+    timerId = null;
+  });
+
+  resetTimerBtn.addEventListener("click", () => {
+    clearInterval(timerId);
+    timerId = null;
+    timeLeft = 60;
+    updateDisplay();
+  });
+}
